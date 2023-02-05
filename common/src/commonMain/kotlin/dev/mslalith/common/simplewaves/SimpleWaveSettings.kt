@@ -3,6 +3,7 @@ package dev.mslalith.common.simplewaves
 import androidx.compose.ui.geometry.Offset
 
 data class SimpleWaveSettings(
+    val cycleDuration: Int = 6_000,
     val numberOfCircles: Int = 3,
     val circlesCenterPercent: Float = 0.3f,
     val waveStartPercent: Float = 0.54f,

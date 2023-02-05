@@ -31,6 +31,13 @@ fun SimpleWaveSettingsPanel(
     ) {
         SettingsPanelItemGap()
         SettingsPanelSliderItem(
+            header = "Cycle Duration",
+            value = settings.cycleDuration.toFloat(),
+            displayValue = settings.cycleDuration.toString(),
+            onValueChange = { onSettingsUpdate(settings.copy(cycleDuration = it.toInt())) },
+            valueRange = 1_000f..15_000f
+        )
+        SettingsPanelSliderItem(
             header = "Number of Circles",
             value = settings.numberOfCircles.toFloat(),
             displayValue = settings.numberOfCircles.toString(),

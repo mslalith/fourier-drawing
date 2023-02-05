@@ -18,9 +18,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import dev.mslalith.common.extensions.fillMaxWidth
-import dev.mslalith.common.squareWaveCircles.SquareWaveCircles
-import dev.mslalith.common.squareWaveCircles.SquareWaveCirclesSettings
-import dev.mslalith.common.squareWaveCircles.SquareWaveCirclesSettingsPanel
+import dev.mslalith.common.simplewaves.SimpleWaves
+import dev.mslalith.common.simplewaves.SimpleWaveSettings
+import dev.mslalith.common.simplewaves.SimpleWaveSettingsPanel
 
 @Composable
 fun App() {
@@ -36,19 +36,19 @@ fun App() {
         )
     )
 
-    var settings by remember { mutableStateOf(SquareWaveCirclesSettings()) }
+    var settings by remember { mutableStateOf(SimpleWaveSettings()) }
 
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
         Row {
-            SquareWaveCircles(
+            SimpleWaves(
                 modifier = Modifier.weight(weight = 1f).fillMaxHeight(),
                 settings = settings,
                 time = time,
             )
-            SquareWaveCirclesSettingsPanel(
+            SimpleWaveSettingsPanel(
                 modifier = Modifier.fillMaxWidth(
                     fraction = .3f,
                     minAllowedSize = 360.dp,

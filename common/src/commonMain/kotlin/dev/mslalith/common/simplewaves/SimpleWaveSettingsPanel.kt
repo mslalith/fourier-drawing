@@ -1,4 +1,4 @@
-package dev.mslalith.common.squareWaveCircles
+package dev.mslalith.common.simplewaves
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -14,11 +14,11 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun SquareWaveCirclesSettingsPanel(
+fun SimpleWaveSettingsPanel(
     modifier: Modifier = Modifier,
     backgroundColor: Color = Color.Gray.copy(alpha = 0.4f),
-    settings: SquareWaveCirclesSettings,
-    onSettingsUpdate: (SquareWaveCirclesSettings) -> Unit
+    settings: SimpleWaveSettings,
+    onSettingsUpdate: (SimpleWaveSettings) -> Unit
 ) {
     fun displayValue(value: Float): String {
         return String.format("%.2f", value)

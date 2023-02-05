@@ -1,8 +1,8 @@
-package dev.mslalith.common.squareWaveCircles
+package dev.mslalith.common.simplewaves
 
 import androidx.compose.ui.geometry.Offset
 
-data class SquareWaveCirclesSettings(
+data class SimpleWaveSettings(
     val numberOfCircles: Int = 3,
     val circlesCenterPercent: Float = 0.3f,
     val waveStartPercent: Float = 0.54f,

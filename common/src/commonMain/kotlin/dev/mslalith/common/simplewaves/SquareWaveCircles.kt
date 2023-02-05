@@ -1,4 +1,4 @@
-package dev.mslalith.common.squareWaveCircles
+package dev.mslalith.common.simplewaves
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.runtime.Composable
@@ -12,16 +12,16 @@ import kotlin.math.cos
 import kotlin.math.sin
 
 @Composable
-fun SquareWaveCircles(
+fun SimpleWaves(
     modifier: Modifier = Modifier,
-    settings: SquareWaveCirclesSettings,
+    settings: SimpleWaveSettings,
     time: Float
 ) {
     val radius = 180f
     Canvas(modifier = modifier) {
         val xCircleCenterOffset = size.width * settings.circlesCenterPercent
         val xWaveStartOffset = size.width * settings.waveStartPercent
-        circles(
+        epicycles(
             numberOfCircles = settings.numberOfCircles,
             radius = radius,
             time = time,
@@ -53,7 +53,7 @@ private fun List<Offset>.toWavePath(startOffset: Float): Path = Path().apply {
     }
 }
 
-private fun DrawScope.circles(
+private fun DrawScope.epicycles(
     numberOfCircles: Int = 1,
     radius: Float,
     time: Float,

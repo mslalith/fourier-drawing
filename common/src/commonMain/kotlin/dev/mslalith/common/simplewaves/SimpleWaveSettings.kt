@@ -1,20 +1,11 @@
 package dev.mslalith.common.simplewaves
 
-import androidx.compose.ui.geometry.Offset
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import dev.mslalith.common.settings.FourierSettings
 
-data class SimpleWaveSettings(
-    val cycleDuration: Int = 6_000,
-    val numberOfCircles: Int = 3,
-    val circlesCenterPercent: Float = 0.3f,
-    val waveStartPercent: Float = 0.54f,
-    val maxWavePoints: Int = 450,
-    private val _wavePoints: MutableList<Offset> = mutableListOf()
-) {
-    val wavePoints: List<Offset>
-        get() = _wavePoints
-
-    fun addWavePoint(point: Offset) {
-        _wavePoints.add(index = 0, element = point)
-        while (_wavePoints.size > maxWavePoints) _wavePoints.removeLast()
-    }
+class SimpleWaveSettings : FourierSettings() {
+    var circlesCenterPercent by mutableStateOf(0.3f)
+    var waveStartPercent by mutableStateOf(0.54f)
 }

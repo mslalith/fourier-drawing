@@ -18,7 +18,6 @@ fun SimpleWaveSettingsPanel(
     modifier: Modifier = Modifier,
     backgroundColor: Color = Color.Gray.copy(alpha = 0.4f),
     settings: SimpleWaveSettings,
-    onSettingsUpdate: (SimpleWaveSettings) -> Unit
 ) {
     fun displayValue(value: Float): String {
         return String.format("%.2f", value)
@@ -34,14 +33,14 @@ fun SimpleWaveSettingsPanel(
             header = "Cycle Duration",
             value = settings.cycleDuration.toFloat(),
             displayValue = settings.cycleDuration.toString(),
-            onValueChange = { onSettingsUpdate(settings.copy(cycleDuration = it.toInt())) },
+            onValueChange = { settings.cycleDuration = it.toInt() },
             valueRange = 1_000f..15_000f
         )
         SettingsPanelSliderItem(
             header = "Number of Circles",
             value = settings.numberOfCircles.toFloat(),
             displayValue = settings.numberOfCircles.toString(),
-            onValueChange = { onSettingsUpdate(settings.copy(numberOfCircles = it.toInt())) },
+            onValueChange = { settings.numberOfCircles = it.toInt() },
             valueRange = 0f..12f,
         )
         SettingsPanelItemGap()
@@ -49,7 +48,7 @@ fun SimpleWaveSettingsPanel(
             header = "Circle Center Percent",
             value = settings.circlesCenterPercent,
             displayValue = displayValue(settings.circlesCenterPercent),
-            onValueChange = { onSettingsUpdate(settings.copy(circlesCenterPercent = it)) },
+            onValueChange = { settings.circlesCenterPercent = it },
             valueRange = 0f..1f,
         )
         SettingsPanelItemGap()
@@ -57,15 +56,15 @@ fun SimpleWaveSettingsPanel(
             header = "Wave Start Percent",
             value = settings.waveStartPercent,
             displayValue = displayValue(settings.waveStartPercent),
-            onValueChange = { onSettingsUpdate(settings.copy(waveStartPercent = it)) },
+            onValueChange = { settings.waveStartPercent = it },
             valueRange = 0f..1f,
         )
         SettingsPanelItemGap()
         SettingsPanelSliderItem(
             header = "Max Wave Points",
-            value = settings.maxWavePoints.toFloat(),
-            displayValue = settings.maxWavePoints.toString(),
-            onValueChange = { onSettingsUpdate(settings.copy(maxWavePoints = it.toInt())) },
+            value = settings.maxShapePoints.toFloat(),
+            displayValue = settings.maxShapePoints.toString(),
+            onValueChange = { settings.maxShapePoints = it.toInt() },
             valueRange = 100f..600f,
         )
     }

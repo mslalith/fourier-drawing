@@ -26,8 +26,8 @@ fun SimpleWaves(
             radius = radius,
             time = time,
             center = Offset(x = xCircleCenterOffset, y = size.height * 0.5f),
-            addWavePoint = { wavePoint ->
-                settings.addWavePoint(wavePoint)
+            onEpicycleEnd = { wavePoint ->
+                settings.addShapePoint(wavePoint)
                 drawLine(
                     color = Color.Blue,
                     start = wavePoint,
@@ -39,7 +39,7 @@ fun SimpleWaves(
 
 
         drawPath(
-            path = settings.wavePoints.toWavePath(startOffset = xWaveStartOffset),
+            path = settings.shapePoints.toWavePath(startOffset = xWaveStartOffset),
             color = Color.Blue,
             style = Stroke(width = 4f)
         )
@@ -58,7 +58,7 @@ private fun DrawScope.epicycles(
     radius: Float,
     time: Float,
     center: Offset,
-    addWavePoint: (Offset) -> Unit
+    onEpicycleEnd: (Offset) -> Unit
 ) {
     val angleInRadians = Math.toRadians(359.0 * time).toFloat()
     var previousCenter = center
@@ -93,5 +93,5 @@ private fun DrawScope.epicycles(
 
         previousCenter = dotCenter
     }
-    addWavePoint(previousCenter)
+    onEpicycleEnd(previousCenter)
 }

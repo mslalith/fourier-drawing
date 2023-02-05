@@ -9,10 +9,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,7 +25,7 @@ import kotlinx.coroutines.flow.onEach
 
 @Composable
 fun App() {
-    var settings by remember { mutableStateOf(SimpleWaveSettings()) }
+    val settings = remember { SimpleWaveSettings() }
 
 //    val infiniteTransition = rememberInfiniteTransition()
 //    val time by infiniteTransition.animateFloat(
@@ -88,7 +85,6 @@ fun App() {
                     maxAllowedSize = 600.dp
                 ).fillMaxHeight(),
                 settings = settings,
-                onSettingsUpdate = { settings = it }
             )
         }
     }

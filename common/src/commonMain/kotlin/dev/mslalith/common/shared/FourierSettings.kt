@@ -1,4 +1,4 @@
-package dev.mslalith.common.settings
+package dev.mslalith.common.shared
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf

@@ -6,6 +6,5 @@ import androidx.compose.runtime.setValue
 import dev.mslalith.common.shared.FourierSettings
 
 class SimpleWaveSettings : FourierSettings() {
-    var circlesCenterPercent by mutableStateOf(0.3f)
     var waveStartPercent by mutableStateOf(0.54f)
 }

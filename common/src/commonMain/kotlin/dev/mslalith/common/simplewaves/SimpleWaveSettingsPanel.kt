@@ -2,12 +2,15 @@ package dev.mslalith.common.simplewaves
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Checkbox
 import androidx.compose.material.Slider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
@@ -65,7 +68,13 @@ fun SimpleWaveSettingsPanel(
             value = settings.maxShapePoints.toFloat(),
             displayValue = settings.maxShapePoints.toString(),
             onValueChange = { settings.maxShapePoints = it.toInt() },
-            valueRange = 100f..600f,
+            valueRange = 0f..600f,
+        )
+        SettingsPanelItemGap()
+        SettingsPanelCheckboxItem(
+            header = "Show Epicycle Center",
+            checked = settings.showEpicycleCenter,
+            onCheckChange = { settings.showEpicycleCenter = it },
         )
     }
 }
@@ -91,5 +100,24 @@ private fun SettingsPanelSliderItem(
             onValueChange = onValueChange,
             valueRange = valueRange,
         )
+    }
+}
+
+@Composable
+private fun SettingsPanelCheckboxItem(
+    modifier: Modifier = Modifier,
+    header: String,
+    checked: Boolean,
+    onCheckChange: (Boolean) -> Unit,
+) {
+    Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Checkbox(
+            checked = checked,
+            onCheckedChange = onCheckChange
+        )
+        Text(text = header)
     }
 }

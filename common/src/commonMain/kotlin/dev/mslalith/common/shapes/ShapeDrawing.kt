@@ -62,7 +62,8 @@ fun ShapeDrawing(
 //val piDft = discreteFourierTransformOf(series = piShape)
 //val piDft = discreteFourierTransformOf(series = eighthNote)
 //val piDft = discreteFourierTransformOf(series = musicNote)
-val piDft = discreteFourierTransformOf(series = pikachuShort)
+//val piDft = discreteFourierTransformOf(series = pikachuShort)
+val piDft = discreteFourierTransformOf(series = vikingShip)
 
 @Composable
 private fun ShapeDrawingCanvas(

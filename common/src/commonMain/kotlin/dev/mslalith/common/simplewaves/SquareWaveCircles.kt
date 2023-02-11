@@ -4,6 +4,8 @@ import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
@@ -13,16 +15,18 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.lerp
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.unit.dp
 import dev.mslalith.common.shared.epicycles
+import dev.mslalith.common.utils.extensions.fillMaxWidth
 import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.map
 
 @Composable
 fun SimpleWaves(
     modifier: Modifier = Modifier,
-    settings: SimpleWaveSettings
+    settings: SimpleWaveSettings,
+    radius: Float = 180f
 ) {
-    val radius = 180f
     val animatable = remember { Animatable(initialValue = 0f) }
 
     LaunchedEffect(key1 = settings.cycleDuration) {
@@ -49,6 +53,31 @@ fun SimpleWaves(
     }
     val time = animatable.value
 
+    Row(modifier = modifier) {
+        SimpleWavesCanvas(
+            modifier = Modifier.weight(weight = 1f).fillMaxHeight(),
+            settings = settings,
+            radius = radius,
+            time = time
+        )
+        SimpleWaveSettingsPanel(
+            modifier = Modifier.fillMaxWidth(
+                fraction = .3f,
+                minAllowedSize = 360.dp,
+                maxAllowedSize = 600.dp
+            ).fillMaxHeight(),
+            settings = settings,
+        )
+    }
+}
+
+@Composable
+private fun SimpleWavesCanvas(
+    modifier: Modifier = Modifier,
+    settings: SimpleWaveSettings,
+    radius: Float,
+    time: Float
+) {
     Canvas(modifier = modifier) {
         val xCircleCenterOffset = size.width * settings.circlesCenterPercent
         val xWaveStartOffset = size.width * settings.waveStartPercent

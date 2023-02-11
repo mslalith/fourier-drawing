@@ -1,4 +1,4 @@
-package dev.mslalith.common.extensions
+package dev.mslalith.common.utils.extensions
 
 import androidx.compose.ui.geometry.Offset
 import dev.mslalith.common.shared.ComplexNumber

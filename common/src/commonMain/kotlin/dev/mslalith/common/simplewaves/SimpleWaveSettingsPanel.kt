@@ -6,12 +6,14 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Checkbox
 import androidx.compose.material.Slider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -39,6 +41,7 @@ fun SimpleWaveSettingsPanel(
             onValueChange = { settings.cycleDuration = it.toInt() },
             valueRange = 1_000f..15_000f
         )
+        SettingsPanelItemGap()
         SettingsPanelSliderItem(
             header = "Number of Circles",
             value = settings.numberOfCircles.toFloat(),
@@ -93,8 +96,21 @@ private fun SettingsPanelSliderItem(
     onValueChange: (Float) -> Unit,
     valueRange: ClosedFloatingPointRange<Float>
 ) {
-    Column(modifier = modifier) {
-        Text(text = "$header : $displayValue")
+    Column(
+        modifier = modifier
+            .clip(shape = RoundedCornerShape(size = 8.dp))
+            .background(color = Color.Gray.copy(alpha = 0.6f))
+            .padding(horizontal = 12.dp)
+            .padding(top = 16.dp),
+    ) {
+        Row {
+            Text(
+                text = header,
+                modifier = Modifier.weight(weight = 1f),
+                maxLines = 1
+            )
+            Text(text = displayValue)
+        }
         Slider(
             value = value,
             onValueChange = onValueChange,

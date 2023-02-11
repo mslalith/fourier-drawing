@@ -39,4 +39,8 @@ abstract class FourierSettings {
             while (_shapePoints.size > maxShapePoints) _shapePoints.removeLast()
         }
     }
+
+    fun clearShapePoints() {
+        _shapePoints.clear()
+    }
 }

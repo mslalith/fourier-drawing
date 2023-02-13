@@ -2,19 +2,14 @@ package dev.mslalith.common.simplewaves
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Checkbox
-import androidx.compose.material.Slider
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import dev.mslalith.common.settings.SettingsPanelCheckboxItem
+import dev.mslalith.common.settings.SettingsPanelSliderItem
+import dev.mslalith.common.utils.extensions.VerticalSpacer
 
 @Composable
 fun SimpleWaveSettingsPanel(
@@ -31,7 +26,7 @@ fun SimpleWaveSettingsPanel(
             .background(color = backgroundColor)
             .padding(horizontal = 12.dp, vertical = 12.dp)
     ) {
-        SettingsPanelItemGap()
+        VerticalSpacer(height = 12.dp)
         SettingsPanelSliderItem(
             header = "Cycle Duration",
             value = settings.cycleDuration.toFloat(),
@@ -39,6 +34,7 @@ fun SimpleWaveSettingsPanel(
             onValueChange = { settings.cycleDuration = it.toInt() },
             valueRange = 1_000f..15_000f
         )
+        VerticalSpacer(height = 12.dp)
         SettingsPanelSliderItem(
             header = "Number of Circles",
             value = settings.numberOfCircles.toFloat(),
@@ -46,7 +42,7 @@ fun SimpleWaveSettingsPanel(
             onValueChange = { settings.numberOfCircles = it.toInt() },
             valueRange = 0f..12f,
         )
-        SettingsPanelItemGap()
+        VerticalSpacer(height = 12.dp)
         SettingsPanelSliderItem(
             header = "Circle Center Percent",
             value = settings.circlesCenterPercent,
@@ -54,7 +50,7 @@ fun SimpleWaveSettingsPanel(
             onValueChange = { settings.circlesCenterPercent = it },
             valueRange = 0f..1f,
         )
-        SettingsPanelItemGap()
+        VerticalSpacer(height = 12.dp)
         SettingsPanelSliderItem(
             header = "Wave Start Percent",
             value = settings.waveStartPercent,
@@ -62,7 +58,7 @@ fun SimpleWaveSettingsPanel(
             onValueChange = { settings.waveStartPercent = it },
             valueRange = 0f..1f,
         )
-        SettingsPanelItemGap()
+        VerticalSpacer(height = 12.dp)
         SettingsPanelSliderItem(
             header = "Max Wave Points",
             value = settings.maxShapePoints.toFloat(),
@@ -70,54 +66,11 @@ fun SimpleWaveSettingsPanel(
             onValueChange = { settings.maxShapePoints = it.toInt() },
             valueRange = 0f..600f,
         )
-        SettingsPanelItemGap()
+        VerticalSpacer(height = 12.dp)
         SettingsPanelCheckboxItem(
             header = "Show Epicycle Center",
             checked = settings.showEpicycleCenter,
             onCheckChange = { settings.showEpicycleCenter = it },
         )
-    }
-}
-
-@Composable
-private fun SettingsPanelItemGap(height: Dp = 12.dp) {
-    Spacer(Modifier.height(height = height))
-}
-
-@Composable
-private fun SettingsPanelSliderItem(
-    modifier: Modifier = Modifier,
-    header: String,
-    value: Float,
-    displayValue: String,
-    onValueChange: (Float) -> Unit,
-    valueRange: ClosedFloatingPointRange<Float>
-) {
-    Column(modifier = modifier) {
-        Text(text = "$header : $displayValue")
-        Slider(
-            value = value,
-            onValueChange = onValueChange,
-            valueRange = valueRange,
-        )
-    }
-}
-
-@Composable
-private fun SettingsPanelCheckboxItem(
-    modifier: Modifier = Modifier,
-    header: String,
-    checked: Boolean,
-    onCheckChange: (Boolean) -> Unit,
-) {
-    Row(
-        modifier = modifier,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Checkbox(
-            checked = checked,
-            onCheckedChange = onCheckChange
-        )
-        Text(text = header)
     }
 }

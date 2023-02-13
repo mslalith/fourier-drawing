@@ -14,6 +14,8 @@ abstract class FourierSettings {
     var circlesCenterPercent by mutableStateOf(0.3f)
     var showEpicycleCenter by mutableStateOf(value = false)
 
+    // TODO: Maintaining points and drawing them on every frame can become an overhead with complex drawings
+    // Eliminate list & directly work with Path
     private val _shapePoints= mutableStateListOf<Offset>()
     val shapePoints: List<Offset>
         get() = _shapePoints
@@ -38,5 +40,9 @@ abstract class FourierSettings {
         if (maxShapePoints > 0) {
             while (_shapePoints.size > maxShapePoints) _shapePoints.removeLast()
         }
+    }
+
+    fun clearShapePoints() {
+        _shapePoints.clear()
     }
 }

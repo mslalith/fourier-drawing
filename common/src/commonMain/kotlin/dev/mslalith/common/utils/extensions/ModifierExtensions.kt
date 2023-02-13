@@ -1,4 +1,4 @@
-package dev.mslalith.common.extensions
+package dev.mslalith.common.utils.extensions
 
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp

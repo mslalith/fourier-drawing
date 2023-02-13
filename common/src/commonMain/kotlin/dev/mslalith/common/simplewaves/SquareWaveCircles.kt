@@ -29,6 +29,7 @@ fun SimpleWaves(
 ) {
     val animatable = remember { Animatable(initialValue = 0f) }
 
+    // TODO: to be revisited
     LaunchedEffect(key1 = settings.cycleDuration) {
         animatable.stop()
         snapshotFlow { settings.cycleDuration }.drop(count = 1).map { newDuration ->
@@ -37,7 +38,6 @@ fun SimpleWaves(
                 stop = Offset(x = settings.cycleDuration.toFloat(), y = 0f),
                 fraction = animatable.value
             ).x.toInt()
-            println("transitionDuratin: $transitionDuration (${animatable.value})")
             animatable.animateTo(
                 targetValue = 1f,
                 animationSpec = tween(durationMillis = settings.cycleDuration - transitionDuration, easing = LinearEasing)
